@@ -100,7 +100,7 @@
 								</div>
 								<div class="item-deets">
 									<h3>Phone Number</h3>
-									<a href="tel:123-456-7890"
+									<a href="tel:+254791434211"
 										>+254 742765488</a
 									>
 								</div>
@@ -115,7 +115,7 @@
 								</div>
 								<div class="item-deets">
 									<h3>Email Address</h3>
-									<a href="mailto:info@fuzuedtech.com"
+									<a href="mailto:ntruderleroy@gmail.com"
 										>info@fuzuedtech.com</a
 									>
 								</div>

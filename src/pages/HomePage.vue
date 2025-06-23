@@ -233,6 +233,23 @@
 					font-size: 2.5rem;
 					color: var(--clr-veryDarkBlue);
 					text-align: center;
+					position: relative;
+
+					&::after {
+						content: "";
+						position: absolute;
+						bottom: -10px;
+						left: 50%;
+						transform: translateX(-50%);
+						width: 150px;
+						height: 4px;
+						background: linear-gradient(
+							45deg,
+							var(--clr-primary-700),
+							#8b5cf6
+						);
+						border-radius: 2px;
+					}
 				}
 				.about__content {
 					gap: 2rem;
@@ -287,6 +304,23 @@
 					font-size: 2.5rem;
 					padding-block: 0.75rem;
 					text-align: center;
+					position: relative;
+
+					&::after {
+						content: "";
+						position: absolute;
+						bottom: -10px;
+						left: 50%;
+						transform: translateX(-50%);
+						width: 150px;
+						height: 4px;
+						background: linear-gradient(
+							45deg,
+							var(--clr-primary-700),
+							#8b5cf6
+						);
+						border-radius: 2px;
+					}
 				}
 
 				.cats {

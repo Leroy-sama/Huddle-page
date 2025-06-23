@@ -3,11 +3,12 @@
 		<div class="wrapper">
 			<div class="cta__wrap grid">
 				<div class="question">
-					<h2 class="cta__head">Hire us now?</h2>
+					<h2 class="cta__head">
+						Ready to invest in your child's future?
+					</h2>
 					<p class="cta__desc">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Rem ad expedita aspernatur accusamus labore explicabo
-						reiciendis laboriosam perspiciatis ipsum consectetur.
+						Invest in your childs future today with top tech skills
+						that will be very significant today and in the future.
 					</p>
 				</div>
 				<div class="answer flex">
@@ -35,7 +36,7 @@
 					text-align: center;
 				}
 				.cta__desc {
-					color: var(--clr-offWhite);
+					color: var(--clr-grayishBlue);
 					text-align: center;
 				}
 			}
@@ -46,6 +47,11 @@
 					color: var(--clr-white);
 					background-color: var(--clr-primary-700);
 					padding: 0.75rem 1.5rem;
+					transition: transform 0.2s ease-in-out;
+
+					&:hover {
+						transform: translateY(-3px);
+					}
 				}
 			}
 		}

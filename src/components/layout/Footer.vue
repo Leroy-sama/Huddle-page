@@ -26,13 +26,13 @@
 					<div class="contacts grid">
 						<div class="contact-email flex">
 							<EmailIcon />
-							<a href="mailto:info@fuzuedtech.com"
+							<a href="mailto:ntruderleroy@gmail.com"
 								>info@fuzuedtech.com</a
 							>
 						</div>
 						<div class="contact-phone flex">
 							<PhoneIcon />
-							<a href="tel:123-456-7890">+254765488</a>
+							<a href="tel:+254791434211">+254791434211</a>
 						</div>
 					</div>
 				</div>
