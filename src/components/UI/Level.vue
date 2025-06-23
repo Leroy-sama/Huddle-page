@@ -2,8 +2,7 @@
 	defineProps({
 		level: {
 			type: String,
-			required: true,
-			default: "Beginner",
+			default: "10 Years",
 		},
 	});
 </script>
@@ -24,7 +23,7 @@
 			color: var(--clr-white);
 			padding: 0.5rem;
 			border-radius: 5px;
-			font-size: 0.9rem;
+			font-size: 0.75rem;
 		}
 	}
 </style>

@@ -2,17 +2,17 @@
 	import { RouterLink } from "vue-router";
 	import Level from "../UI/Level.vue";
 
-	defineProps(["image", "title", "description"]);
+	defineProps(["image", "title", "description", "level", "courseSlug"]);
 </script>
 
 <template>
 	<div class="service">
-		<RouterLink to="/courses/details">
+		<RouterLink :to="`/courses/${courseSlug}`">
 			<img :src="image" :alt="title" />
 		</RouterLink>
 		<div class="service__deets grid">
-			<Level />
-			<RouterLink to="/courses/details">
+			<Level :level="level" />
+			<RouterLink :to="`/courses/${courseSlug}`">
 				<h2 class="service__deets-head">{{ title }}</h2>
 			</RouterLink>
 			<p class="service__deets-desc">
@@ -41,6 +41,7 @@
 				border-radius: 5px;
 			}
 			h2 {
+				color: var(--clr-veryDarkBlue);
 			}
 		}
 	}

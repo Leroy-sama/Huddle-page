@@ -30,6 +30,7 @@
 		--clr-grayishBlue: hsl(233, 8%, 79%);
 		--clr-darkGrayishBlue: hsl(236, 13%, 42%);
 		--clr-veryDarkBlue: hsl(240, 100%, 5%);
+		--clr-para: hsl(240, 14%, 20%);
 		--clr-bgAdv: #050f13;
 		--clr-lightGrey: #ccc;
 	}

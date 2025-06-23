@@ -29,9 +29,10 @@ const router = createRouter({
 			},
 		},
 		{
-			path: "/courses/details",
-			name: "details",
+			path: "/courses/:slug",
+			name: "Course Details",
 			component: () => import("../pages/CourseDetails.vue"),
+			props: true,
 			meta: {
 				title: `Course Details`,
 			},
@@ -53,6 +54,13 @@ const router = createRouter({
 			},
 		},
 	],
+	scrollBehavior(to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition;
+		} else {
+			return { top: 0 };
+		}
+	},
 });
 
 router.beforeEach((to, from, next) => {

@@ -30,9 +30,11 @@
 						<CourseItem
 							v-for="(course, index) in courses.courses"
 							:key="index"
-							:title="course.title"
+							:courseSlug="course.slug"
 							:image="course.image"
+							:title="course.title"
 							:description="course.description"
+							:level="course.level"
 						/>
 					</div>
 				</div>

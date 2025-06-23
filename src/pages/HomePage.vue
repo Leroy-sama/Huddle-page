@@ -1,14 +1,16 @@
 <script setup lang="ts">
 	import { useAdsStore } from "@/store/advantages";
-	import JoinUs from "@/assets/icons/JoinUs.vue";
+	import { useCourses } from "@/store/courses";
 	import Advantage from "@/components/home/Advantage.vue";
 	import WebDev from "@/assets/icons/WebDev.vue";
 	import Robotics from "@/assets/icons/Robotics.vue";
 	import Languages from "@/assets/icons/Languages.vue";
 	import GameDev from "@/assets/icons/GameDev.vue";
 	import SpanTitle from "@/components/UI/SpanTitle.vue";
+	import HireCta from "@/components/UI/HireCta.vue";
 
 	const adsStore = useAdsStore();
+	const courses = useCourses();
 </script>
 
 <template>
@@ -75,7 +77,7 @@
 		<section class="category">
 			<div class="wrapper">
 				<div class="category__wrap">
-					<SpanTitle title="categories" />
+					<SpanTitle class="ads-us" title="categories" />
 					<h2 class="category__head">
 						Creative, Experiential, Modular STEM Classes
 					</h2>
@@ -127,34 +129,37 @@
 				</div>
 			</div>
 		</section>
-		<section class="lastcta">
+		<section class="popular">
 			<div class="wrapper">
-				<div class="lastcta__wrap grid">
-					<div class="content-text grid">
-						<div class="span flex">
-							<JoinUs />
-							<SpanTitle title="Direct Inquiry" />
-						</div>
-						<h2 class="lastcta__head">Join Us Today</h2>
-						<p class="lastcta__desc">
-							Join Us Today! Experience the innovative learning
-							and teaching at FUZU EDTECH. Partner with us to
-							empower learners with cutting-edge skills and
-							knowledge. Let's shape the future of education
-							together!
-						</p>
-						<div class="lastcta__link">
-							<RouterLink to="/contact" class="contact"
-								>Contact Us</RouterLink
-							>
+				<div class="popular__wrap">
+					<SpanTitle class="span-center" title="popular courses" />
+					<h2>Pick a course to get started</h2>
+					<div class="courses">
+						<div
+							class="course"
+							v-for="course in courses.courses.slice(0, 4)"
+						>
+							<RouterLink :to="`/courses/${course.slug}`">
+								<img :src="course.image" alt="" />
+							</RouterLink>
+							<div>
+								<span class="price">{{ course.price }}</span>
+								<RouterLink :to="`/courses/${course.slug}`">
+									<h3>{{ course.title }}</h3>
+								</RouterLink>
+								<span class="lessons">
+									{{ course.duration }}
+								</span>
+							</div>
 						</div>
 					</div>
-					<div class="content-img">
-						<img src="../assets/images/join-us.jpg" alt="" />
+					<div class="btn-link">
+						<RouterLink to="/courses">All Courses</RouterLink>
 					</div>
 				</div>
 			</div>
 		</section>
+		<HireCta />
 	</main>
 </template>
 
@@ -257,8 +262,10 @@
 								border: 1px solid var(--clr-primary-700);
 								background-color: var(--clr-primary-700);
 								transition: 0.3s ease;
+								border-radius: 8px;
 
 								&:hover {
+									transform: translateY(-2px);
 								}
 							}
 						}
@@ -268,17 +275,18 @@
 		}
 
 		.category {
-			padding-block: 2rem;
+			padding-block: 4rem;
 
 			&__wrap {
 				.ads-us {
-					color: var(--clr-primary-700);
-					text-transform: uppercase;
+					display: flex;
+					justify-content: center;
 				}
 
 				.category__head {
 					font-size: 2.5rem;
 					padding-block: 0.75rem;
+					text-align: center;
 				}
 
 				.cats {
@@ -324,7 +332,6 @@
 					font-size: 2.5rem;
 					color: var(--clr-white);
 					text-align: center;
-					padding-top: 1rem;
 				}
 
 				.advantages__content {
@@ -334,57 +341,294 @@
 				}
 			}
 		}
-		.lastcta {
-			padding: 3rem 0;
+
+		.popular {
+			padding-block: 5rem;
+			background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 
 			&__wrap {
-				gap: 1rem;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
 
-				.content-text {
-					gap: 1rem;
-				}
-
-				@media (min-width: 1024px) {
-					grid-template-columns: 1fr 1fr;
-					align-items: center;
-				}
-				.span {
-					align-items: center;
-					gap: 0.5rem;
-				}
-
-				.lastcta-us {
+				.span-center {
+					display: flex;
 					justify-content: center;
-					text-transform: uppercase;
+					margin-bottom: 1rem;
 				}
 
-				.lastcta__head {
-					font-size: 2.5rem;
-					color: var(--clr-veryDarkBlue);
-					// padding: 1rem 0;
+				h2 {
+					font-size: 2.8rem;
+					font-weight: 700;
+					color: var(--clr-bgAdv);
+					text-align: center;
+					padding-top: 1rem;
+					margin-bottom: 3rem;
+					position: relative;
+
+					&::after {
+						content: "";
+						position: absolute;
+						bottom: -10px;
+						left: 50%;
+						transform: translateX(-50%);
+						width: 80px;
+						height: 4px;
+						background: linear-gradient(
+							45deg,
+							var(--clr-primary-700),
+							#8b5cf6
+						);
+						border-radius: 2px;
+					}
 				}
 
-				.lastcta__link {
-					padding: 1rem 0;
+				.courses {
+					display: grid;
+					grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+					gap: 2.5rem;
+					margin-bottom: 4rem;
 
-					.contact {
-						color: var(--clr-white);
-						padding: 0.8rem 1.5rem;
-						border: 1px solid var(--clr-primary-700);
-						background-color: var(--clr-primary-700);
-						transition: 0.3s ease;
+					.course {
+						display: grid;
+						gap: 1.5rem;
+						align-items: center;
+						background: white;
+						border-radius: 16px;
+						padding: 1.5rem;
+						box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+						border: 1px solid rgba(255, 255, 255, 0.2);
+						transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+						position: relative;
+						overflow: hidden;
+
+						// Subtle gradient overlay
+						&::before {
+							content: "";
+							position: absolute;
+							top: 0;
+							left: 0;
+							right: 0;
+							height: 4px;
+							background: linear-gradient(
+								45deg,
+								var(--clr-primary-700),
+								#8b5cf6,
+								#ec4899
+							);
+							border-radius: 16px 16px 0 0;
+						}
 
 						&:hover {
-							color: var(--clr-white);
-							border: 1px solid var(--clr-primary-700);
-							background-color: var(--clr-primary-700);
+							transform: translateY(-8px);
+							box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+							border-color: rgba(59, 130, 246, 0.3);
+						}
+
+						@media (min-width: 768px) {
+							grid-template-columns: 200px 1fr;
+							gap: 2rem;
+						}
+
+						@media (max-width: 767px) {
+							min-width: 300px;
+							text-align: center;
+						}
+
+						a {
+							text-decoration: none;
+							transition: all 0.3s ease;
+
+							&:hover {
+								transform: scale(1.02);
+							}
+						}
+
+						img {
+							width: 100%;
+							height: 150px;
+							aspect-ratio: 4/3;
+							object-fit: cover;
+							border-radius: 12px;
+							transition: all 0.3s ease;
+
+							@media (min-width: 768px) {
+								height: 120px;
+							}
+
+							&:hover {
+								transform: scale(1.05);
+								box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+							}
+						}
+
+						> div {
+							display: flex;
+							flex-direction: column;
+							gap: 0.8rem;
+							align-items: flex-start;
+
+							@media (max-width: 767px) {
+								align-items: center;
+							}
+						}
+
+						.price {
+							background: linear-gradient(
+								135deg,
+								#f97316,
+								#ea580c
+							);
+							color: white;
+							padding: 0.4rem 1rem;
+							border-radius: 20px;
+							font-weight: 600;
+							font-size: 0.9rem;
+							letter-spacing: 0.5px;
+							box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+							transition: all 0.3s ease;
+
+							&:hover {
+								transform: translateY(-2px);
+								box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+							}
+						}
+
+						h3 {
+							color: var(--clr-bgAdv);
+							font-size: 1.4rem;
+							font-weight: 600;
+							line-height: 1.3;
+							margin: 0;
+							transition: color 0.3s ease;
+
+							&:hover {
+								color: var(--clr-primary-700);
+							}
+
+							@media (max-width: 767px) {
+								text-align: center;
+							}
+						}
+
+						.lessons {
+							color: #64748b;
+							font-size: 0.95rem;
+							font-weight: 500;
+							display: flex;
+							align-items: center;
+							gap: 0.5rem;
+							background: #f1f5f9;
+							padding: 0.3rem 0.8rem;
+							border-radius: 12px;
+							border: 1px solid #e2e8f0;
+
+							&::before {
+								content: "📚";
+								font-size: 0.9rem;
+							}
 						}
 					}
 				}
 
-				.content-img {
-					img {
-						border-radius: 10px;
+				// "All Courses" link styling
+				.btn-link {
+					display: flex;
+					justify-content: center;
+					> a {
+						display: inline-flex;
+						align-items: center;
+						justify-content: center;
+						gap: 0.5rem;
+						background-color: var(--clr-primary-700);
+						color: white;
+						text-decoration: none;
+						padding: 1rem 2.5rem;
+						font-weight: 600;
+						transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+						position: relative;
+						overflow: hidden;
+						border-radius: 8px;
+
+						&::before {
+							content: "";
+							position: absolute;
+							top: 0;
+							left: -100%;
+							width: 100%;
+							height: 100%;
+							background: linear-gradient(
+								90deg,
+								transparent,
+								rgba(255, 255, 255, 0.2),
+								transparent
+							);
+							transition: left 0.6s ease;
+						}
+
+						&:hover {
+							transform: translateY(-3px);
+							box-shadow: 0 15px 45px rgba(59, 130, 246, 0.4);
+
+							&::before {
+								left: 100%;
+							}
+
+							&::after {
+								transform: translateX(5px);
+							}
+						}
+
+						&::after {
+							content: "->";
+							font-size: 1.2rem;
+							transition: transform 0.3s ease;
+						}
+					}
+				}
+			}
+		}
+
+		// Responsive adjustments
+		@media (max-width: 1024px) {
+			.popular__wrap .courses {
+				grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+			}
+		}
+
+		@media (max-width: 768px) {
+			.popular {
+				padding-block: 3rem;
+
+				&__wrap {
+					padding: 0 1rem;
+
+					h2 {
+						font-size: 2.2rem;
+					}
+
+					.courses {
+						grid-template-columns: 1fr;
+						gap: 1.5rem;
+
+						.course {
+							padding: 1.2rem;
+							min-width: unset;
+						}
+					}
+				}
+			}
+		}
+
+		@media (max-width: 480px) {
+			.popular__wrap {
+				h2 {
+					font-size: 1.8rem;
+				}
+
+				.courses .course {
+					h3 {
+						font-size: 1.2rem;
 					}
 				}
 			}
